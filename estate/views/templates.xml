@@ -1,0 +1,128 @@
+<odoo>
+    <data>
+        <template id="estate_listing" name="Advertisements">
+           <t t-call="website.layout">
+               <div class="container">
+                    <h1>Advertisements</h1>
+                    <div class="cont"
+                         style="display:flex; justify-content:flex-start; flex-wrap:wrap; padding-top:10px;">
+                        <div class="card" style="width:150px; height:250px; margin:10px;" t-foreach="properties" t-as="property">
+                            <div class="prop-img">
+                                <span t-field="property.property_image"
+                                      t-options='{"widget": "image", "alt-field": "name", "width":"50px"}'/>
+
+                                 <b><p  t-field="property.name" style="padding:10px"></p></b>
+                                 <b><p  t-field="property.property_type_id" style="padding:10px"></p></b>
+                                 <p t-field="property.best_price" style="background-color:green;padding:10px"></p>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+           </t>
+        </template>
+
+        <template id="plant_hello" name="Hello World">
+            <html>
+                <body>
+                    <h1>Hello <t t-esc="name"/>!</h1>
+                </body>
+            </html>
+        </template>
+
+
+        <template id="plant_hello3" name="Hello World">
+            <xpath expr="." position="inside">
+                 <link href="estate/static/src/css/card.css" rel="stylesheet" type="text/css"/>
+            </xpath>
+            <t t-call="web.layout">
+                <div class="container">
+                <t t-set="head_website">
+                    <t t-call-assets="web.assets_common" t-js="true"/>
+                    <t t-call-assets="web.assets_frontend" t-js="true"/>
+
+                    <t t-call-assets="web.assets_common" t-css="true"/>
+                    <t t-call-assets="web.assets_frontend" t-css="true"/>
+                 </t>
+
+                <t t-set="head" t-value="head_website + (head or '')"/>
+                    <div id="wrapwrap">
+                        <div class="row">
+                            <h1 class="col-md-12">Hello world!</h1>
+                            <div class="col-md-12">
+                                <p>Welcome to <strong><span t-field="company.name"/>'s Plant Store</strong></p>
+                            </div>
+                            <div class="cont" >
+                                <div class="card" t-foreach="properties" t-as="property">
+                                    <div class="prop-img">
+                                        <span t-field="property.property_image"
+                                              t-options='{"widget": "image", "alt-field": "name"}'/>
+
+                                         <b><p  t-field="property.name"></p></b>
+                                         <p t-field="property.best_price"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                </t>
+        </template>
+
+
+        <template id="frontend_layout" name="Main Frontend Layout">
+           <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <div class="container">
+                            <p> Here we go!!!</p>
+                            <p> Here we go!!!</p>
+                            <p> Here we go!!!</p>
+                            <p> Here we go!!!</p>
+                        </div>
+                    </div>
+                </div>
+           </t>
+        </template>
+
+        <template id="listing">
+            <html>
+                <body>
+                    <t t-call="website.layout">
+                        <div class="container">
+                            <div style="margin-top:20px">
+                              <ul>
+                                <li t-foreach="objects" t-as="object">
+                                  <a t-attf-href="#{ root }/objects/#{ object.id }">
+                                    <t t-esc="object.name"/>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                        </div>
+                    </t>
+                </body>
+            </html>
+        </template>
+
+        <template id="object">
+            <html>
+                <body>
+                    <t t-call="website.layout">
+                        <div style="margin-top:20px">
+                            <div class="container">
+                              <h1><t t-esc="object.name"/></h1>
+                              <dl>
+                                <t t-foreach="object._fields" t-as="field">
+                                  <dt><t t-esc="field"/></dt>
+                                  <dd><t t-esc="object[field]"/></dd>
+                                </t>
+                              </dl>
+                            </div>
+                        </div>
+                    </t>
+                </body>
+            </html>
+        </template>
+
+    </data>
+</odoo>

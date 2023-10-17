@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+    <odoo>
+        <!-- Default Estate Property Types View setup with Window Action-->
+        <record id="estate_property_tag_action" model="ir.actions.act_window">
+            <field name="name">Property Tags</field>
+            <field name="res_model">estate.property.tag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--  Designing the Estate Property Type list view-->
+        <record id="estate_property_tag_view_tree" model="ir.ui.view">
+            <field name="name">estate.property.tag.tree</field>
+            <field name="model">estate.property.tag</field>
+            <field name="arch" type="xml">
+                <tree string="Property Tags" editable="bottom" >
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Designing the Estate Property form view-->
+        <record id="estate_property_tag_view_form" model="ir.ui.view">
+            <field name="name">estate.property.tag.form</field>
+            <field name="model">estate.property.tag</field>
+            <field name="arch" type="xml">
+                <form string="Estate Property Tag">
+                    <sheet>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1 class="mb32">
+                                <field name="name" class="mb16"/>
+                            </h1>
+                        </div>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                     </div>
+                </form>
+            </field>
+        </record>
+    </odoo>

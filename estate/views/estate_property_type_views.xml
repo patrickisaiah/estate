@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+    <odoo>
+        <!--    Default Estate Property Types View setup with Window Action-->
+        <record id="estate_property_type_action" model="ir.actions.act_window">
+            <field name="name">Property Types</field>
+            <field name="res_model">estate.property.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--  Default Estate Property offer View setup with Window Action-->
+        <record id="estate_property_offer_action" model="ir.actions.act_window">
+            <field name="name">Offers</field>
+            <field name="res_model">estate.property.offer</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('property_type_id', '=', active_id)]</field>
+        </record>
+
+        <!--    Designing the Estate Property Type list view-->
+        <record id="estate_property_type_view_tree" model="ir.ui.view">
+            <field name="name">estate.property.type.tree</field>
+            <field name="model">estate.property.type</field>
+            <field name="arch" type="xml">
+                <tree string="Property Types">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Designing the Estate Property form view-->
+        <record id="estate_property_type_view_form" model="ir.ui.view">
+            <field name="name">estate.property.type.form</field>
+            <field name="model">estate.property.type</field>
+            <field name="arch" type="xml">
+                <form string="Estate Property Types">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" position="inside" style="display:flex; justify-content:flex-end">
+                            <button type="action" name="%(estate_property_offer_action)d" class="oe_stat_button" icon="fa-credit-card" >
+                                <field string="Offers" name="offer_count" widget="statinfo"/>
+                            </button>
+                         </div>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1 class="mb32">
+                                <field name="name" class="mb16"/>
+                            </h1>
+                        </div>
+
+                      <field name="property_ids">
+                        <tree>
+                            <field name="name" string="Name"/>
+                            <field name="expected_price"/>
+                            <field name="state" />
+                        </tree>
+                      </field>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                     </div>
+                </form>
+            </field>
+        </record>
+    </odoo>
